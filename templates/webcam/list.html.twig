@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset(partner.stylePath~'/css/reset.css') }}" rel="stylesheet"/>
+    <link href="{{ asset(partner.stylePath~'/css/estilos.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div class="listado-chicas">
+        {% for webcam in webcams %}
+            {% if loop.index==7 %}
+                {{ include('webcam/greatWebcam.html.twig', { 'webcam': webcams[0], 'partner': partner }) }}
+            {% endif %}
+            {% if loop.index==19 %}
+                {{ include('webcam/rightGreatWebcam.html.twig', { 'webcam': webcams[1], 'partner': partner }) }}
+            {% endif %}
+            {% if loop.index==29 %}
+                {{ include('webcam/greatWebcam.html.twig', { 'webcam': webcams[2], 'partner': partner }) }}
+            {% endif %}
+            {% if loop.index==41 %}
+                {{ include('webcam/rightGreatWebcam.html.twig', { 'webcam': webcams[3], 'partner': partner }) }}
+            {% endif %}
+            {% if loop.index==56 %}
+                {{ include('webcam/greatWebcam.html.twig', { 'webcam': webcams[4], 'partner': partner }) }}
+            {% endif %}
+            {% if not loop.first %}
+                {{ include('webcam/webcam.html.twig', { 'webcam': webcam, 'partner': partner }) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="clear"></div>
+	
+    <a class="btn-mas-modelos" href="#" title="Mostrar más modelos">Mostrar Más Modelos</a>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.simplemodal.js') }}"></script>
+    <script>
+        $( ".link" ).click(function() {
+            var src = $(this).attr('href');
+            $.modal('<iframe src="' + src + '" height="630" width="1000" style="border:0">', {
+                    closeHTML:"",
+                    containerCss:{
+                            backgroundColor:"#fff", 
+                            borderColor:"#fff",  
+                            padding:0
+                    },
+                    overlayClose:true
+            });
+            return false;
+        });
+    </script>
+{% endblock %}
